@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EloClash — E-Cell IIT Ropar Pitch</title>
+<style>
+  :root{
+    --bg:#1A1816; --surf:#262421; --card:#312E2B; --bord:#45403C;
+    --grn:#81B64C; --grnd:#5A8034; --gold:#D9A441; --red:#C85450; --blu:#4A9EFF;
+    --txt:#F5F5F5; --mut:#B8B8B8; --dim:#6B6B6B;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;background:#0a0908;
+    font-family:Calibri,"Segoe UI","Helvetica Neue",Arial,sans-serif;}
+  body{-webkit-font-smoothing:antialiased;}
+
+  .viewer{position:fixed;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:18px;padding:16px;}
+
+  .stage-wrap{position:relative;flex:0 0 auto;
+    box-shadow:0 30px 90px rgba(0,0,0,.6);}
+  .stage{position:absolute;top:0;left:0;width:1000px;height:562.5px;
+    transform-origin:top left;}
+
+  .slide{position:absolute;inset:0;width:1000px;height:562.5px;
+    background:var(--bg);overflow:hidden;
+    opacity:0;pointer-events:none;transition:opacity .35s ease;}
+  .slide.active{opacity:1;pointer-events:auto;}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none;}}
+
+  .abs{position:absolute;}
+  .eb{position:absolute;text-transform:uppercase;font-weight:700;
+    font-size:11.8px;letter-spacing:2.2px;color:var(--grn);white-space:nowrap;}
+  .card{background:var(--card);border:1px solid var(--bord);}
+  .surf{background:var(--surf);border:1px solid var(--bord);}
+  .fmid{display:flex;align-items:center;}
+  .fctr{display:flex;align-items:center;justify-content:center;text-align:center;}
+  .pre{white-space:pre-line;}
+  .snum{position:absolute;left:905px;top:530px;width:70px;height:20px;
+    font-size:11.1px;color:var(--bord);text-align:right;}
+
+  /* ---------- controls chrome ---------- */
+  .controls{display:flex;align-items:center;gap:16px;flex:0 0 auto;}
+  .nav-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--bord);
+    background:var(--card);color:var(--txt);font-size:16px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s,border-color .15s;}
+  .nav-btn:hover{background:var(--surf);border-color:var(--grn);}
+  .nav-btn:focus-visible{outline:2px solid var(--grn);outline-offset:2px;}
+  .nav-btn:disabled{opacity:.35;cursor:default;}
+  .dots{display:flex;gap:7px;align-items:center;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--bord);border:none;
+    padding:0;cursor:pointer;transition:width .2s ease,background .2s ease;}
+  .dot.active{background:var(--grn);width:22px;border-radius:4px;}
+  .dot:focus-visible{outline:2px solid var(--grn);outline-offset:3px;}
+  .counter{color:var(--dim);font-size:12.5px;min-width:44px;text-align:center;
+    font-variant-numeric:tabular-nums;}
+  .notes-toggle{border:1px solid var(--bord);background:transparent;color:var(--mut);
+    font-size:12px;padding:7px 14px;border-radius:20px;cursor:pointer;letter-spacing:.5px;
+    transition:border-color .15s,color .15s;}
+  .notes-toggle:hover{border-color:var(--gold);color:var(--gold);}
+  .notes-toggle:focus-visible{outline:2px solid var(--grn);outline-offset:2px;}
+  .notes-toggle.on{border-color:var(--gold);color:var(--gold);}
+
+  .notes-panel{position:fixed;left:0;right:0;bottom:0;background:#0f0e0c;
+    border-top:1px solid var(--bord);color:var(--mut);font-size:14px;
+    line-height:1.55;padding:16px 24px;max-height:26vh;overflow-y:auto;
+    transform:translateY(100%);transition:transform .3s ease;z-index:5;}
+  .notes-panel.open{transform:translateY(0);}
+  .notes-panel b{color:var(--gold);text-transform:uppercase;font-size:11px;
+    letter-spacing:1.5px;display:block;margin-bottom:6px;}
+
+  @media (max-width:640px){
+    .controls{gap:10px;}
+    .notes-toggle{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="viewer">
+  <div class="stage-wrap" id="stageWrap">
+    <div class="stage" id="stage">
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 1 — EloClash / Founder                                  -->
+      <!-- ============================================================ -->
+      <section class="slide active" data-index="1">
+        <div class="eb" style="left:55px;top:32px;color:var(--dim);">E-Cell IIT Ropar — Startup Pitch</div>
+
+        <div class="abs" style="left:55px;top:65px;width:890px;height:95px;font-size:69.4px;font-weight:700;color:var(--txt);text-align:center;">EloClash</div>
+        <div class="abs" style="left:55px;top:168px;width:890px;height:34px;font-size:22.2px;color:var(--mut);text-align:center;font-style:italic;">The competitive infrastructure for online debate.</div>
+
+        <div class="abs" style="left:430px;top:212px;width:140px;height:2px;background:var(--bord);"></div>
+
+        <!-- product loop: 5 steps -->
+        <div class="abs fctr card" style="left:114px;top:235px;width:132px;height:38px;border:1.5px solid var(--grn);font-size:14.6px;font-weight:700;color:var(--grn);">Find opponent</div>
+        <div class="abs fctr" style="left:246px;top:235px;width:28px;height:38px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:274px;top:235px;width:132px;height:38px;border:1.5px solid var(--grn);font-size:14.6px;font-weight:700;color:var(--grn);">Debate</div>
+        <div class="abs fctr" style="left:406px;top:235px;width:28px;height:38px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:434px;top:235px;width:132px;height:38px;border:1.5px solid var(--grn);font-size:14.6px;font-weight:700;color:var(--grn);">Analyze</div>
+        <div class="abs fctr" style="left:566px;top:235px;width:28px;height:38px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:594px;top:235px;width:132px;height:38px;border:1.5px solid var(--grn);font-size:14.6px;font-weight:700;color:var(--grn);">Rate</div>
+        <div class="abs fctr" style="left:726px;top:235px;width:28px;height:38px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:754px;top:235px;width:132px;height:38px;border:1.5px solid var(--grn);font-size:14.6px;font-weight:700;color:var(--grn);">Rematch</div>
+
+        <div class="abs" style="left:500px;top:300px;width:1px;height:250px;background:var(--bord);"></div>
+
+        <!-- Left: Founder -->
+        <div class="eb" style="left:55px;top:300px;">Founder</div>
+        <div class="abs" style="left:55px;top:326px;width:430px;height:40px;font-size:33.3px;font-weight:700;color:var(--txt);">Himanshu Puri</div>
+        <div class="abs" style="left:55px;top:368px;width:430px;height:26px;font-size:15.3px;color:var(--mut);">Third Year · Mathematics &amp; Computing · IIT Ropar</div>
+        <div class="abs" style="left:55px;top:404px;width:430px;height:26px;font-size:18.1px;color:var(--txt);">•&nbsp;&nbsp;Incoming Microsoft Intern</div>
+        <div class="abs" style="left:55px;top:432px;width:430px;height:26px;font-size:18.1px;color:var(--txt);">•&nbsp;&nbsp;E-Cell Startup Assistance Head</div>
+        <div class="abs" style="left:55px;top:460px;width:430px;height:26px;font-size:18.1px;color:var(--txt);">•&nbsp;&nbsp;Sole Founder &amp; Developer</div>
+
+        <!-- Right: MVP -->
+        <div class="eb" style="left:515px;top:300px;color:var(--gold);">MVP — Live Now</div>
+        <div class="abs surf" style="left:515px;top:326px;width:430px;height:90px;border:2px solid var(--grn);"></div>
+     <a href="https://eloclash.com" target="_blank" rel="noopener noreferrer">
+  <div class="abs fctr" style="left:515px;top:326px;width:430px;height:90px;font-size:38.9px;font-weight:700;color:var(--grn);">
+    eloclash.com
+  </div>
+</a>
+        <div class="abs" style="left:515px;top:428px;width:430px;height:50px;font-size:16.7px;color:var(--mut);">The first piece of the infrastructure is already built — live and running.</div>
+
+        <div class="snum">1 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 2 — Problem                                             -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="2">
+        <div class="eb" style="left:55px;top:28px;">The Problem</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:55px;font-size:38.9px;font-weight:700;color:var(--txt);">Debate has no dominant digital arena.</div>
+
+        <div class="eb" style="left:55px;top:118px;color:var(--dim);">The Current Experience</div>
+        <div class="abs fctr" style="left:55px;top:148px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">I want to debate</div>
+        <div class="abs fctr" style="left:55px;top:172px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:192px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">Find someone interested</div>
+        <div class="abs fctr" style="left:55px;top:216px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:236px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">Coordinate availability</div>
+        <div class="abs fctr" style="left:55px;top:260px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:280px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">Choose topic &amp; sides</div>
+        <div class="abs fctr" style="left:55px;top:304px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:324px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">Agree on rules / format</div>
+        <div class="abs fctr" style="left:55px;top:348px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:368px;width:430px;height:24px;font-size:18.1px;color:var(--txt);">Conduct debate</div>
+        <div class="abs fctr" style="left:55px;top:392px;width:430px;height:14px;font-size:15.3px;color:var(--dim);">↓</div>
+        <div class="abs fctr" style="left:55px;top:412px;width:430px;height:26px;font-size:18.1px;font-weight:700;color:var(--red);">Find another opponent</div>
+        <div class="abs fctr" style="left:55px;top:440px;width:430px;height:20px;font-size:13.2px;font-style:italic;color:var(--dim);">Often days on Discord/Reddit just to find an opponent.</div>
+
+        <div class="eb" style="left:520px;top:118px;color:var(--dim);">Meanwhile</div>
+
+        <div class="abs card" style="left:520px;top:145px;width:425px;height:100px;"></div>
+        <div class="abs" style="left:538px;top:155px;width:250px;height:26px;font-size:19.4px;font-weight:700;color:var(--txt);">♟ Chess</div>
+        <div class="abs" style="left:850px;top:155px;width:80px;height:26px;font-size:19.4px;font-weight:700;color:var(--grn);text-align:right;">✓</div>
+        <div class="abs" style="left:538px;top:190px;width:390px;height:45px;font-size:14.6px;color:var(--mut);">Chess.com → Match → Play → Rating → Rematch</div>
+
+        <div class="abs card" style="left:520px;top:255px;width:425px;height:100px;"></div>
+        <div class="abs" style="left:538px;top:265px;width:250px;height:26px;font-size:19.4px;font-weight:700;color:var(--txt);">💻 Coding</div>
+        <div class="abs" style="left:850px;top:265px;width:80px;height:26px;font-size:19.4px;font-weight:700;color:var(--grn);text-align:right;">✓</div>
+        <div class="abs" style="left:538px;top:300px;width:390px;height:45px;font-size:14.6px;color:var(--mut);">Codeforces → Problem → Submit → Rating → Compete again</div>
+
+        <div class="abs card" style="left:520px;top:365px;width:425px;height:100px;border:1.5px solid var(--red);"></div>
+        <div class="abs" style="left:538px;top:375px;width:250px;height:26px;font-size:19.4px;font-weight:700;color:var(--red);">💬 Debate</div>
+        <div class="abs" style="left:850px;top:375px;width:80px;height:26px;font-size:19.4px;font-weight:700;color:var(--red);text-align:right;">✗</div>
+        <div class="abs" style="left:538px;top:410px;width:390px;height:45px;font-size:14.6px;color:var(--red);">Reddit / Discord / Clubs → post and wait, often days, for a reply</div>
+
+        <div class="abs surf" style="left:55px;top:480px;width:890px;height:55px;border-color:var(--gold);"></div>
+        <div class="abs fctr" style="left:55px;top:480px;width:890px;height:55px;font-size:19.4px;font-weight:700;">
+          <span style="color:var(--grn);">The demand for debate already exists.</span>&nbsp;<span style="color:var(--gold);">The infrastructure around it is fragmented.</span>
+        </div>
+
+        <div class="snum">2 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 3 — Solution                                            -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="3">
+        <div class="eb" style="left:55px;top:28px;">The Solution</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:50px;font-size:33.3px;font-weight:700;color:var(--txt);">Turn debate into an on-demand competitive activity.</div>
+        <div class="abs" style="left:55px;top:106px;width:890px;height:26px;font-size:16.7px;color:var(--mut);">We ease finding an opponent, run a structured debate, then evaluate the result.</div>
+
+        <!-- PHASE 1 — Find Opponent -->
+        <div class="abs card" style="left:55px;top:158px;width:280px;height:325px;border:1.5px solid var(--grn);"></div>
+        <div class="eb" style="left:75px;top:176px;color:var(--grn);">Phase 1</div>
+        <div class="abs" style="left:75px;top:198px;width:240px;height:28px;font-size:21px;font-weight:700;color:var(--txt);">Find Opponent</div>
+        <div class="abs" style="left:75px;top:236px;width:230px;height:1px;background:var(--bord);"></div>
+        <div class="abs" style="left:75px;top:250px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">⚡&nbsp;&nbsp;Instant matchmaking</div>
+        <div class="abs" style="left:75px;top:278px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">🎯&nbsp;&nbsp;Topic auto-assigned</div>
+        <div class="abs" style="left:75px;top:306px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">⚖️&nbsp;&nbsp;Side auto-assigned</div>
+        <div class="abs" style="left:75px;top:398px;width:235px;height:70px;font-size:13.4px;font-style:italic;color:var(--mut);">No searching Discord or Reddit. No waiting days for a reply.</div>
+
+        <div class="abs fctr" style="left:322px;top:300px;width:32px;height:40px;font-size:22px;color:var(--dim);">→</div>
+
+        <!-- PHASE 2 — Structured Debate -->
+        <div class="abs card" style="left:360px;top:158px;width:280px;height:325px;border:1.5px solid var(--gold);"></div>
+        <div class="eb" style="left:380px;top:176px;color:var(--gold);">Phase 2</div>
+        <div class="abs" style="left:380px;top:198px;width:240px;height:28px;font-size:21px;font-weight:700;color:var(--txt);">Structured Debate</div>
+        <div class="abs" style="left:380px;top:236px;width:230px;height:1px;background:var(--bord);"></div>
+        <div class="abs" style="left:380px;top:250px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">⏱️&nbsp;&nbsp;Timed turns &amp; rebuttals</div>
+        <div class="abs" style="left:380px;top:278px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">🎙️&nbsp;&nbsp;Live voice room</div>
+        <div class="abs" style="left:380px;top:306px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">🛡️&nbsp;&nbsp;Moderated phases</div>
+        <div class="abs" style="left:380px;top:398px;width:235px;height:70px;font-size:13.4px;font-style:italic;color:var(--mut);">A real debate format — controlled turns, not a free-for-all chat.</div>
+
+        <div class="abs fctr" style="left:627px;top:300px;width:32px;height:40px;font-size:22px;color:var(--dim);">→</div>
+
+        <!-- PHASE 3 — Evaluate & Rematch -->
+        <div class="abs card" style="left:665px;top:158px;width:280px;height:325px;border:1.5px solid var(--blu);"></div>
+        <div class="eb" style="left:685px;top:176px;color:var(--blu);">Phase 3</div>
+        <div class="abs" style="left:685px;top:198px;width:240px;height:28px;font-size:21px;font-weight:700;color:var(--txt);">Evaluate &amp; Rematch</div>
+        <div class="abs" style="left:685px;top:236px;width:230px;height:1px;background:var(--bord);"></div>
+        <div class="abs" style="left:685px;top:250px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">🧠&nbsp;&nbsp;AI debate analysis</div>
+        <div class="abs" style="left:685px;top:278px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">★&nbsp;&nbsp;ELO rating update</div>
+        <div class="abs" style="left:685px;top:306px;width:230px;height:24px;font-size:14.2px;color:var(--txt);">🔁&nbsp;&nbsp;Instant rematch</div>
+        <div class="abs" style="left:685px;top:398px;width:235px;height:70px;font-size:13.4px;font-style:italic;color:var(--mut);">Know exactly how you performed — then climb the ladder.</div>
+
+        <div class="abs surf" style="left:55px;top:500px;width:890px;height:42px;"></div>
+        <div class="abs fctr" style="left:55px;top:500px;width:890px;height:42px;font-size:19.4px;font-weight:700;color:var(--txt);">Instead of organizing a debate, just start one.</div>
+
+        <div class="snum">3 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 4 — Why EloClash?                                       -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="4">
+        <div class="eb" style="left:55px;top:28px;">The USP — Why This Approach</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:60px;font-size:33.3px;font-weight:700;color:var(--txt);">Not another place to talk. The infrastructure around the debate.</div>
+
+        <div class="abs card" style="left:55px;top:128px;width:430px;height:140px;"></div>
+        <div class="abs" style="left:75px;top:144px;width:390px;height:26px;font-size:19.4px;font-weight:700;color:var(--grn);">🤝&nbsp;&nbsp;Matchmaking</div>
+        <div class="abs" style="left:75px;top:176px;width:390px;height:80px;font-size:15.3px;color:var(--mut);">Find a suitable opponent instead of searching Reddit / Discord.</div>
+
+        <div class="abs card" style="left:515px;top:128px;width:430px;height:140px;"></div>
+        <div class="abs" style="left:535px;top:144px;width:390px;height:26px;font-size:19.4px;font-weight:700;color:var(--gold);">📐&nbsp;&nbsp;Structure</div>
+        <div class="abs" style="left:535px;top:176px;width:390px;height:80px;font-size:15.3px;color:var(--mut);">A real debate format with controlled turns, timing and phases.</div>
+
+        <div class="abs card" style="left:55px;top:278px;width:430px;height:140px;"></div>
+        <div class="abs" style="left:75px;top:294px;width:390px;height:26px;font-size:19.4px;font-weight:700;color:var(--blu);">🏆&nbsp;&nbsp;Competition</div>
+        <div class="abs" style="left:75px;top:326px;width:390px;height:80px;font-size:15.3px;color:var(--mut);">ELO, rankings, seasons — and eventually tournaments.</div>
+
+        <div class="abs card" style="left:515px;top:278px;width:430px;height:140px;"></div>
+        <div class="abs" style="left:535px;top:294px;width:390px;height:26px;font-size:19.4px;font-weight:700;color:var(--grn);">🔬&nbsp;&nbsp;Analysis</div>
+        <div class="abs" style="left:535px;top:326px;width:390px;height:80px;font-size:15.3px;color:var(--mut);">Post-debate AI analysis to understand arguments, rebuttals and performance.</div>
+
+        <div class="abs card" style="left:55px;top:433px;width:430px;height:75px;"></div>
+        <div class="abs" style="left:75px;top:443px;width:390px;height:24px;font-size:16.7px;font-weight:700;color:var(--txt);">Discord / Reddit</div>
+        <div class="abs" style="left:75px;top:470px;width:390px;height:28px;font-size:15.3px;color:var(--dim);">= People</div>
+
+        <div class="abs" style="left:515px;top:433px;width:430px;height:75px;background:var(--card);border:1.5px solid var(--grn);"></div>
+        <div class="abs" style="left:535px;top:443px;width:390px;height:24px;font-size:16.7px;font-weight:700;color:var(--grn);">EloClash</div>
+        <div class="abs" style="left:535px;top:470px;width:390px;height:28px;font-size:14.6px;color:var(--txt);">= People + Matchmaking + Format + Competition + Analysis</div>
+
+        <div class="snum">4 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 5 — MVP                                                 -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="5">
+        <div class="eb" style="left:55px;top:28px;">MVP</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:55px;font-size:33.3px;font-weight:700;color:var(--txt);">The first piece of the infrastructure is already built.</div>
+
+        <div class="abs surf" style="left:55px;top:125px;width:890px;height:70px;border:2px solid var(--grn);"></div>
+    <a href="https://eloclash.com" target="_blank" rel="noopener noreferrer">
+  <div class="abs fctr" style="left:55px;top:125px;width:890px;height:70px;font-size:33.3px;font-weight:700;color:var(--grn);">
+    eloclash.com
+  </div>
+</a>
+
+        <div class="abs card" style="left:55px;top:215px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:70px;top:215px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">🎯&nbsp;&nbsp;Real-time matchmaking</div>
+
+        <div class="abs card" style="left:358px;top:215px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:373px;top:215px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">🎙️&nbsp;&nbsp;Voice debate rooms</div>
+
+        <div class="abs card" style="left:661px;top:215px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:676px;top:215px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">⏱️&nbsp;&nbsp;Structured debate phases</div>
+
+        <div class="abs card" style="left:55px;top:295px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:70px;top:295px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">★&nbsp;&nbsp;ELO rating</div>
+
+        <div class="abs card" style="left:358px;top:295px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:373px;top:295px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">🧠&nbsp;&nbsp;AI-powered analysis</div>
+
+        <div class="abs card" style="left:661px;top:295px;width:283px;height:65px;"></div>
+        <div class="abs fmid" style="left:676px;top:295px;width:255px;height:65px;font-size:15.3px;font-weight:700;color:var(--txt);">📜&nbsp;&nbsp;Debate history &amp; profiles</div>
+
+        <!-- flow -->
+        <div class="abs fctr card" style="left:70px;top:380px;width:195px;height:34px;font-size:13.9px;font-weight:700;color:var(--grn);border:1.5px solid var(--grn);">MVP</div>
+        <div class="abs fctr" style="left:265px;top:380px;width:27px;height:34px;font-size:15.3px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:292px;top:380px;width:195px;height:34px;font-size:13.9px;font-weight:700;color:var(--grn);border:1.5px solid var(--grn);">Real users</div>
+        <div class="abs fctr" style="left:487px;top:380px;width:27px;height:34px;font-size:15.3px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:514px;top:380px;width:195px;height:34px;font-size:13.9px;font-weight:700;color:var(--grn);border:1.5px solid var(--grn);">Measure repeat usage</div>
+        <div class="abs fctr" style="left:709px;top:380px;width:27px;height:34px;font-size:15.3px;color:var(--dim);">→</div>
+        <div class="abs fctr card" style="left:736px;top:380px;width:195px;height:34px;font-size:13.9px;font-weight:700;color:var(--grn);border:1.5px solid var(--grn);">Refine</div>
+
+        <div class="abs surf" style="left:55px;top:432px;width:890px;height:58px;border-color:var(--gold);"></div>
+        <div class="abs fctr" style="left:75px;top:432px;width:850px;height:58px;font-size:16.7px;font-weight:700;color:var(--txt);">We're not asking E-Cell to fund an idea — we're asking them to help us validate and refine an existing product.</div>
+
+        <div class="abs fctr" style="left:55px;top:496px;width:890px;height:24px;font-size:14.6px;font-style:italic;color:var(--mut);">The core MVP is functional — the next step is real-user validation and refinement.</div>
+
+        <div class="snum">5 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 6 — Target Customer                                     -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="6">
+        <div class="eb" style="left:55px;top:28px;">Target Customer</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:55px;font-size:33.3px;font-weight:700;color:var(--txt);">Start with people who already enjoy debating.</div>
+
+        <div class="abs card" style="left:55px;top:112px;width:430px;height:196px;"></div>
+        <div class="eb" style="left:75px;top:122px;width:350px;">Initial Users</div>
+        <div class="abs" style="left:82px;top:158px;width:385px;height:22px;font-size:15.5px;color:var(--mut);">•&nbsp;&nbsp;Debate society members</div>
+        <div class="abs" style="left:82px;top:184px;width:385px;height:22px;font-size:15.5px;color:var(--mut);">•&nbsp;&nbsp;Competitive debaters</div>
+        <div class="abs" style="left:82px;top:210px;width:385px;height:22px;font-size:15.5px;color:var(--mut);">•&nbsp;&nbsp;MUN participants</div>
+        <div class="abs" style="left:82px;top:236px;width:385px;height:22px;font-size:15.5px;color:var(--mut);">•&nbsp;&nbsp;Public-speaking / debate enthusiasts</div>
+        <div class="abs" style="left:82px;top:262px;width:385px;height:22px;font-size:15.5px;color:var(--mut);">•&nbsp;&nbsp;Students who enjoy intellectual competition</div>
+
+        <div class="abs surf" style="left:515px;top:112px;width:430px;height:196px;border-color:var(--gold);"></div>
+        <div class="eb" style="left:535px;top:122px;width:350px;color:var(--gold);">Why Start Here?</div>
+        <div class="abs" style="left:535px;top:152px;width:390px;height:22px;font-size:16px;font-weight:700;color:var(--txt);">They already have the behavior.</div>
+        <div class="abs" style="left:535px;top:180px;width:390px;height:34px;font-size:13.5px;color:var(--mut);">We don't need to convince them to debate.</div>
+        <div class="abs" style="left:535px;top:222px;width:390px;height:18px;font-size:13px;font-weight:700;color:var(--mut);">We need to make debating:</div>
+        <div class="abs" style="left:535px;top:244px;width:390px;height:20px;font-size:14.5px;color:var(--txt);"><span style="color:var(--grn);font-weight:700;">+</span>&nbsp;&nbsp;easier to start</div>
+        <div class="abs" style="left:535px;top:266px;width:390px;height:20px;font-size:14.5px;color:var(--txt);"><span style="color:var(--grn);font-weight:700;">+</span>&nbsp;&nbsp;easier to repeat</div>
+        <div class="abs" style="left:535px;top:288px;width:390px;height:20px;font-size:14.5px;color:var(--txt);"><span style="color:var(--grn);font-weight:700;">+</span>&nbsp;&nbsp;more competitive</div>
+
+        <div class="eb" style="left:55px;top:320px;color:var(--gold);">Later — After Initial Traction</div>
+        <div class="abs surf" style="left:55px;top:344px;width:890px;height:76px;border-color:var(--gold);"></div>
+        <div class="abs fctr" style="left:55px;top:344px;width:200px;height:76px;font-size:13.6px;font-weight:700;color:var(--txt);">🗣️&nbsp;Communication &amp; critical-thinking learners</div>
+        <div class="abs fctr" style="left:285px;top:344px;width:200px;height:76px;font-size:13.6px;font-weight:700;color:var(--txt);">💼&nbsp;Working professionals</div>
+        <div class="abs fctr" style="left:515px;top:344px;width:200px;height:76px;font-size:13.6px;font-weight:700;color:var(--txt);">🎯&nbsp;Students preparing for placements</div>
+        <div class="abs fctr" style="left:745px;top:344px;width:200px;height:76px;font-size:13.6px;font-weight:700;color:var(--txt);">➕&nbsp;...and beyond</div>
+
+        <div class="abs surf" style="left:55px;top:434px;width:890px;height:50px;"></div>
+        <div class="abs fctr" style="left:75px;top:434px;width:850px;height:50px;font-size:14.6px;font-style:italic;color:var(--mut);">Research shows a substantial debate ecosystem with frequent participation among active debaters — the demand is already there.</div>
+
+        <div class="snum">6 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 7 — Competition                                         -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="7">
+        <div class="eb" style="left:55px;top:28px;">Competition</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:55px;font-size:33.3px;font-weight:700;color:var(--txt);">Several attempts exist. None has become the default arena.</div>
+
+        <div class="abs card" style="left:55px;top:126px;width:890px;height:70px;"></div>
+        <div class="abs" style="left:75px;top:136px;width:300px;height:22px;font-size:15.3px;font-weight:700;color:var(--txt);">AI Debate Platforms</div>
+        <div class="abs" style="left:75px;top:166px;width:280px;height:20px;font-size:12.5px;font-style:italic;color:var(--dim);">Debate-an-AI tools</div>
+        <div class="abs" style="left:370px;top:138px;width:250px;height:46px;font-size:14.6px;color:var(--mut);">Available anytime, instant practice</div>
+        <div class="abs" style="left:620px;top:138px;width:30px;height:46px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs" style="left:660px;top:138px;width:270px;height:46px;font-size:14.6px;color:var(--gold);">Not a real opponent — no live competition</div>
+
+        <div class="abs card" style="left:55px;top:204px;width:890px;height:70px;"></div>
+        <div class="abs" style="left:75px;top:216px;width:300px;height:22px;font-size:15.3px;font-weight:700;color:var(--txt);">Private Debate Rooms</div>
+        <div class="abs" style="left:75px;top:244px;width:280px;height:20px;font-size:12.5px;font-style:italic;color:var(--dim);">Bring-your-own-opponent tools</div>
+        <div class="abs" style="left:370px;top:216px;width:250px;height:46px;font-size:14.6px;color:var(--mut);">A structured room &amp; timer</div>
+        <div class="abs" style="left:620px;top:216px;width:30px;height:46px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs" style="left:660px;top:216px;width:270px;height:46px;font-size:14.6px;color:var(--gold);">No matchmaking — you still find the opponent yourself</div>
+
+        <div class="abs card" style="left:55px;top:282px;width:890px;height:70px;"></div>
+        <div class="abs" style="left:75px;top:294px;width:300px;height:22px;font-size:15.3px;font-weight:700;color:var(--txt);">Discord / Reddit / Clubs</div>
+        <div class="abs" style="left:75px;top:322px;width:280px;height:20px;font-size:12.5px;font-style:italic;color:var(--dim);">Traditional matchmaking</div>
+        <div class="abs" style="left:370px;top:294px;width:250px;height:46px;font-size:14.6px;color:var(--mut);">Real communities, strong culture</div>
+        <div class="abs" style="left:620px;top:294px;width:30px;height:46px;font-size:16.7px;color:var(--dim);">→</div>
+        <div class="abs" style="left:660px;top:294px;width:270px;height:46px;font-size:14.6px;color:var(--gold);">Informal — post &amp; wait, often days, for a reply</div>
+
+        <div class="abs" style="left:55px;top:360px;width:890px;height:70px;background:var(--card);border:1.5px solid var(--grn);"></div>
+        <div class="abs" style="left:75px;top:372px;width:280px;height:24px;font-size:18.1px;font-weight:700;color:var(--grn);">⭐ EloClash</div>
+        <div class="abs" style="left:370px;top:372px;width:560px;height:46px;font-size:14.6px;color:var(--txt);">Matchmaking + structured 1v1 + competitive progression + analysis</div>
+
+        <div class="abs surf" style="left:55px;top:448px;width:890px;height:62px;border-color:var(--gold);"></div>
+        <div class="abs fctr" style="left:75px;top:448px;width:850px;height:62px;font-size:17.4px;font-weight:700;color:var(--txt);">We're not entering a market with no competition — we're entering a fragmented market that hasn't produced a dominant platform.</div>
+
+        <div class="snum">7 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 8 — Scope                                               -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="8">
+        <div class="eb" style="left:55px;top:28px;">Scope</div>
+        <div class="abs" style="left:55px;top:52px;width:590px;height:90px;font-size:33.3px;font-weight:700;color:var(--txt);line-height:1.15;">From 1v1 debates to the infrastructure of competitive debate.</div>
+
+        <!-- Phase 1 -->
+        <div class="abs card" style="left:50px;top:220px;width:280px;height:250px;border:1.5px solid var(--grn);"></div>
+        <div class="eb" style="left:65px;top:232px;width:260px;color:var(--grn);">Phase 1 — 1v1</div>
+        <div class="abs" style="left:65px;top:262px;width:260px;height:26px;font-size:15.3px;color:var(--mut);">•  Matchmaking</div>
+        <div class="abs" style="left:65px;top:290px;width:260px;height:26px;font-size:15.3px;color:var(--mut);">•  ELO</div>
+        <div class="abs" style="left:65px;top:318px;width:260px;height:26px;font-size:15.3px;color:var(--mut);">•  AI analysis</div>
+        <div class="abs" style="left:65px;top:346px;width:260px;height:26px;font-size:15.3px;color:var(--mut);">•  Profiles</div>
+        <div class="abs" style="left:65px;top:374px;width:260px;height:26px;font-size:15.3px;color:var(--mut);">•  Leaderboards</div>
+        <div class="abs" style="left:60px;top:440px;width:260px;height:24px;font-size:15.3px;font-weight:700;font-style:italic;color:var(--grn);">The entry point.</div>
+
+        <!-- Phase 2 -->
+        <div class="abs card" style="left:355px;top:150px;width:290px;height:340px;border:1.5px solid var(--gold);"></div>
+        <div class="eb" style="left:370px;top:162px;width:270px;color:var(--gold);">Phase 2 — Ecosystem</div>
+        <div class="abs" style="left:370px;top:192px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Tournaments</div>
+        <div class="abs" style="left:370px;top:219px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Seasons</div>
+        <div class="abs" style="left:370px;top:246px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Campus rankings</div>
+        <div class="abs" style="left:370px;top:273px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Debate clubs</div>
+        <div class="abs" style="left:370px;top:300px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Spectating</div>
+        <div class="abs" style="left:370px;top:327px;width:270px;height:25px;font-size:14.6px;color:var(--mut);">•  Inter-college competitions</div>
+        <div class="abs" style="left:370px;top:366px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);">Who Joins Next</div>
+        <div class="abs" style="left:370px;top:386px;width:265px;height:60px;font-size:12.6px;color:var(--mut);line-height:1.35;">First, serious debaters. Then, anyone who wants sharper communication &amp; critical thinking — students, professionals, placement aspirants.</div>
+        <div class="abs pre" style="left:365px;top:452px;width:270px;height:30px;font-size:14.6px;font-weight:700;font-style:italic;color:var(--gold);line-height:1.25;">High growth — nobody owns this yet.</div>
+
+        <!-- Phase 3 -->
+        <div class="abs card" style="left:670px;top:70px;width:300px;height:420px;border:1.5px solid var(--blu);"></div>
+        <div class="eb" style="left:685px;top:82px;width:280px;color:var(--blu);">Phase 3 — Advanced</div>
+        <div class="abs" style="left:685px;top:112px;width:280px;height:24px;font-size:16.0px;font-weight:700;color:var(--txt);">Team Debates</div>
+        <div class="abs" style="left:695px;top:142px;width:270px;height:24px;font-size:14.2px;color:var(--mut);">–  British Parliamentary</div>
+        <div class="abs" style="left:695px;top:170px;width:270px;height:24px;font-size:14.2px;color:var(--mut);">–  Parliamentary Formats</div>
+        <div class="abs" style="left:695px;top:198px;width:270px;height:24px;font-size:14.2px;color:var(--mut);">–  Policy Formats</div>
+        <div class="abs" style="left:695px;top:226px;width:270px;height:24px;font-size:14.2px;color:var(--mut);">–  Other Established Formats</div>
+        <div class="abs pre" style="left:680px;top:452px;width:280px;height:30px;font-size:14.6px;font-weight:700;font-style:italic;color:var(--blu);line-height:1.25;">Once liquidity allows.</div>
+
+        <div class="abs fctr" style="left:312px;top:325px;width:38px;height:40px;font-size:25px;color:var(--grn);">→</div>
+        <div class="abs fctr" style="left:637px;top:270px;width:38px;height:40px;font-size:25px;color:var(--gold);">→</div>
+
+        <div class="abs surf" style="left:50px;top:494px;width:920px;height:62px;border-color:var(--gold);"></div>
+        <div class="abs fctr" style="left:70px;top:500px;width:880px;height:36px;font-size:13.2px;color:var(--mut);line-height:1.35;">As AI takes over routine work, communication, critical thinking &amp; problem-solving become the core human skills — and no one is building the infrastructure to practice them competitively.</div>
+        <div class="abs fctr" style="left:70px;top:538px;width:880px;height:22px;font-size:16.7px;font-weight:700;color:var(--grn);">1v1 is the start. Eventually, the chess.com for debates.</div>
+
+        <div class="snum">8 / 9</div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SLIDE 9 — E-Cell Partnership                                  -->
+      <!-- ============================================================ -->
+      <section class="slide" data-index="9">
+        <div class="eb" style="left:55px;top:28px;">The Partnership</div>
+        <div class="abs" style="left:55px;top:52px;width:890px;height:55px;font-size:38.9px;font-weight:700;color:var(--txt);">Be the launchpad for EloClash.</div>
+
+        <div class="eb" style="left:55px;top:125px;color:var(--dim);">What We Need</div>
+
+        <div class="abs card" style="left:55px;top:150px;width:283px;height:200px;border-color:var(--gold);"></div>
+        <div class="abs" style="left:73px;top:166px;width:250px;height:26px;font-size:18.1px;font-weight:700;color:var(--gold);">Initial Grant</div>
+        <div class="abs" style="left:73px;top:200px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  Structure the product</div>
+        <div class="abs" style="left:73px;top:226px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  User research</div>
+        <div class="abs" style="left:73px;top:252px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  AI / API &amp; cloud credits</div>
+        <div class="abs" style="left:73px;top:278px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  Product refinement</div>
+
+        <div class="abs card" style="left:358px;top:150px;width:283px;height:200px;border-color:var(--grn);"></div>
+        <div class="abs" style="left:376px;top:166px;width:250px;height:26px;font-size:18.1px;font-weight:700;color:var(--grn);">Mentorship</div>
+        <div class="abs" style="left:376px;top:200px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  Product-market fit</div>
+        <div class="abs" style="left:376px;top:226px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  Go-to-market</div>
+        <div class="abs" style="left:376px;top:252px;width:250px;height:24px;font-size:14.6px;color:var(--mut);">•  Startup strategy</div>
+
+        <div class="abs card" style="left:661px;top:150px;width:283px;height:200px;border-color:var(--blu);border-style:dashed;"></div>
+        <div class="abs" style="left:679px;top:166px;font-size:10.8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blu);">If Possible</div>
+        <div class="abs" style="left:679px;top:186px;width:250px;height:26px;font-size:18.1px;font-weight:700;color:var(--blu);">Workspace</div>
+        <div class="abs" style="left:679px;top:220px;width:250px;height:80px;font-size:14.6px;color:var(--mut);">A small working space at E-Cell.</div>
+
+        <div class="eb" style="left:55px;top:370px;color:var(--dim);">What We'll Do</div>
+        <div class="abs surf" style="left:55px;top:392px;width:890px;height:50px;"></div>
+        <div class="abs fctr" style="left:75px;top:392px;width:850px;height:50px;font-size:14.2px;font-weight:700;color:var(--mut);">IIT Ropar Pilot &nbsp;→&nbsp; Measure real usage &amp; retention &nbsp;→&nbsp; Refine the product &nbsp;→&nbsp; Build the campus debate community &nbsp;→&nbsp; Expand to other campuses</div>
+
+        <div class="abs" style="left:55px;top:458px;width:890px;height:26px;font-size:22.2px;font-weight:700;color:var(--txt);text-align:center;">Built at IIT Ropar.</div>
+        <div class="abs" style="left:55px;top:487px;width:890px;height:26px;font-size:22.2px;font-weight:700;color:var(--grn);text-align:center;">Let's build the debate ecosystem from here.</div>
+
+        <div class="snum">9 / 9</div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="nav-btn" id="prevBtn" aria-label="Previous slide">‹</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="nextBtn" aria-label="Next slide">›</button>
+    <span class="counter" id="counter">1 / 9</span>
+    <button class="notes-toggle" id="notesToggle">Speaker notes</button>
+  </div>
+</div>
+
+<div class="notes-panel" id="notesPanel">
+  <b>Speaker notes</b>
+  <div id="notesText"></div>
+</div>
+
+<script>
+(function(){
+  var notes = [
+    'Purpose: establish who you are and what you\'re building in 20–30 seconds. Say your name and the one-line pitch, gesture to the loop, then move on — don\'t over-explain yet.',
+    'This is the most important slide. Do NOT say "nobody has a platform for debate" — research shows several attempts already exist. Instead walk through the manual process and let the length of it make the point for you. Call out explicitly that on Discord/Reddit today, debaters often wait days just to find an opponent. Land on: "The demand for debate already exists. The infrastructure around it is fragmented."',
+    'Walk the three phases in order — finding an opponent is made instant, the debate itself is structured, and the result gets evaluated. Emphasize how much manual coordination EloClash absorbs at each phase. Close with: "Instead of organizing a debate, just start one."',
+    'This is your USP slide. Don\'t claim AI judging is objectively correct — research shows skepticism around AI judging. Call it AI analysis/feedback, not an "objective AI judge." The Discord/Reddit vs EloClash contrast is the visual argument: people alone isn\'t infrastructure.',
+    'This separates you from someone pitching an idea. Don\'t say the product is completely finished — say: "The core MVP is functional; the next step is real-user validation and refinement." The message: we\'re not asking E-Cell to fund an idea, we\'re asking them to help us validate and refine an existing product.',
+    'This is where our thinking has changed substantially — start with people who already debate, not a broad audience. Key line: "We don\'t need to convince people to debate. We need to make it effortless for the people who already want to." Once there\'s traction, the audience widens naturally to anyone sharpening communication and critical thinking — working professionals, students prepping for placements, and others.',
+    'This is where you demonstrate you\'ve done your homework. The important line: "We are not entering a market with no competition. We are entering a fragmented market that has not yet produced a dominant platform." That\'s far more credible than claiming no competition exists.',
+    'Don\'t expand into interviews, negotiation, or public speaking — stay inside the actual thesis. The growth argument: as AI takes over routine work, communication, critical thinking and problem-solving become the core human skills — and no one is building competitive infrastructure to practice them. Close with: "1v1 is the start. Eventually, the chess.com for debates."',
+    'Lead with the ask in priority order: an initial grant to structure the product and fund research, a mentor, and — if possible — a small workspace. Don\'t make this a desperate funding request. Close with: "Built at IIT Ropar. Let\'s build the debate ecosystem from here." If asked about revenue, use the backup Business Model slide — don\'t volunteer a revenue projection here; the open question is usage and retention, not monetization.'
+  ];
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+
+  var stage = document.getElementById('stage');
+  var stageWrap = document.getElementById('stageWrap');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var counter = document.getElementById('counter');
+  var dotsWrap = document.getElementById('dots');
+  var notesToggle = document.getElementById('notesToggle');
+  var notesPanel = document.getElementById('notesPanel');
+  var notesText = document.getElementById('notesText');
+
+  for (var i = 0; i < total; i++) {
+    var d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    (function(idx){ d.addEventListener('click', function(){ goTo(idx); }); })(i);
+    dotsWrap.appendChild(d);
+  }
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function goTo(idx){
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    notesText.textContent = notes[current];
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+  nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+
+  notesToggle.addEventListener('click', function(){
+    var open = notesPanel.classList.toggle('open');
+    notesToggle.classList.toggle('on', open);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+    else if (e.key.toLowerCase() === 'n') { notesToggle.click(); }
+    else if (e.key === 'Escape') { notesPanel.classList.remove('open'); notesToggle.classList.remove('on'); }
+  });
+
+  var touchStartX = null;
+  stageWrap.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, {passive:true});
+  stageWrap.addEventListener('touchend', function(e){
+    if (touchStartX === null) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); }
+    touchStartX = null;
+  }, {passive:true});
+
+  function fit(){
+    var chromeH = 90;
+    var maxW = window.innerWidth - 32;
+    var maxH = window.innerHeight - chromeH;
+    var scale = Math.min(maxW / 1000, maxH / 562.5);
+    scale = Math.max(scale, 0.28);
+    stage.style.transform = 'scale(' + scale + ')';
+    stageWrap.style.width = (1000 * scale) + 'px';
+    stageWrap.style.height = (562.5 * scale) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+  notesText.textContent = notes[0];
+
+  window.goTo = goTo;
+})();
+</script>
+</body>
+</html>
